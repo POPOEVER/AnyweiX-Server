@@ -2,11 +2,24 @@ const getResult = require('../api/wx.js')
 
 const appRouter = function (app) {
 
-	app.get("/", function(req, res) {
-		res.status(200).send({
-			"isSucceeded": true,
-			"data": {
-				"message":"Nothing to look here"
+	app.get("/", function(req, res, next) {
+		// res.status(200).send({
+		// 	"isSucceeded": true,
+		// 	"data": {
+		// 		"message":"Nothing to look here"
+		// 	}
+		// })
+		var options = {
+			root: __dirname + '/../pages/',
+			dotfiles: 'deny',
+			headers: {
+			'x-timestamp': Date.now(),
+			'x-sent': true
+			}
+		};
+		res.sendFile('welcome.html', options, function(err) {
+			if (err) {
+				next(err)
 			}
 		})
 	})
