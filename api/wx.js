@@ -23,7 +23,6 @@ function getResult(req, success) {
 			let $ = cheerio.load(data)
 			$('ul.news-list li').each(function(i, e) {
 				result.data[result.data.length] = {
-					// "imgUrl": $(e).find('.img-box a').attr('href'),
 					"title": $(e).find('.txt-box h3 a').text(),
 					"url": $(e).find('.txt-box h3 a').attr('href'),
 					"author": $(e).find('.s-p .account').text()

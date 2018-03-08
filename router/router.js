@@ -12,11 +12,8 @@ const appRouter = function (app) {
 	})
 
 	app.get("/api/list", function(req, res) {
-
 		let params = req.query
-
 		getResult(params, function(data) {
-
 			if(data.data === []) {
 				res.status(200).send({
 					"isSucceeded": true,
@@ -28,7 +25,6 @@ const appRouter = function (app) {
 				res.status(200).send(data)
 			}
 		})
-
 	})
 }
 

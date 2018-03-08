@@ -1,1 +1,1 @@
-# AnyweiX-Server
+# AnyweiX-Server Daemon
