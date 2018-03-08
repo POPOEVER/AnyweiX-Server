@@ -1,0 +1,19 @@
+{
+  "name": "anyweix-server",
+  "version": "0.1.0",
+  "description": "AnyweiX Server Daemon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Andre Pan",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cheerio": "^1.0.0-rc.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "express-https-redirect": "^1.0.0"
+  }
+}
