@@ -2,20 +2,31 @@
 <html>
 	<head>
 		<meta name="Content-Type" content="text/html;charset=utf-8">
-		<title>anyweiX Server Daemon</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>anyweiX by Andre Pan</title>
 		<link rel="stylesheet" href="/welcome.css">
+		<link rel="icon" type="image/x-icon" sizes="16x16 32x32" href="/favicon.ico">
+		<script type="text/javascript">
+			window.onload = function() {
+				document.querySelector('#logo').setAttribute('isShow','true');
+				document.querySelector('#welcome-msg').setAttribute('isShow','true');
+				document.querySelector('.button').setAttribute('isShow','true');
+				document.querySelector('.footer').setAttribute('isShow','true')
+			}
+		</script>
 	</head>
 	<body>
 		<div class="container">
 			<img id="logo" src="/anyweix-logo.svg" alt="">
 			<div id="welcome-msg">
-				Thank you for visiting anyweiX 🤖
+				For thou, who can't work without Wechat 🤖
 			</div>
 			<a class="button" href="https://github.com/POPOEVER/AnyweiX-Server">
 				Github Project
 			</a>
 			<div class="footer">
-				Powered by anyweiX Server Daemon, maintained by Andre Pan
+				anyweiX by Andre Pan | Licensed under MIT
 			</div>
 		</div>
 	</body>

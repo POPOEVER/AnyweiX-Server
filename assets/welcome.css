@@ -8,8 +8,9 @@ body {
 	width: 100vw;
 	margin: 0;
 	padding: 0;
-	background-color: #1a1a1a;
+	background-color: #000;
 	background-image: url('./darkness.png');
+	box-sizing: border-box;
 }
 
 .container {
@@ -18,9 +19,9 @@ body {
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-
 	height: 100%;
 	width: 100%;
+	box-sizing: border-box;
 }
 
 #logo {
@@ -28,9 +29,12 @@ body {
 }
 
 #welcome-msg {
-	font-size: 3em;
+	font-size: 1.5em;
 	font-weight: 100;
 	color: #fefefe;
+	text-align: center;
+	padding: 0 30px;
+	box-sizing: border-box;
 }
 
 .button {
@@ -43,6 +47,7 @@ body {
 	border-radius: 5px;
 	cursor: pointer;
 	transition: all .3s ease-in-out;
+	box-sizing: border-box;
 }
 
 .button:hover {
@@ -52,6 +57,66 @@ body {
 
 .footer {
 	color: #555;
-	font-size: 0.8em;
+	font-size: .8em;
 	font-weight: 200;
+}
+
+#logo,
+#welcome-msg,
+.button,
+.footer {
+	opacity: 0;
+	-webkit-transform: translate3d(0,30%,0);
+	transform: translate3d(0,30%,0);
+}
+
+#logo[isShow="true"] {
+	-webkit-animation: slideIn .5s ease-in-out forwards;
+	animation: slideIn .5s ease-in-out forwards;
+}
+
+#welcome-msg[isShow="true"] {
+	-webkit-animation: slideIn .5s ease-in-out .1s forwards;
+	animation: slideIn .5s ease-in-out .1s forwards;
+}
+
+.button[isShow="true"] {
+	-webkit-animation: slideIn .5s ease-in-out .2s forwards;
+	animation: slideIn .5s ease-in-out .2s forwards;
+}
+
+.footer[isShow="true"] {
+	-webkit-animation: slideIn .5s ease-in-out .3s forwards;
+	animation: slideIn .5s ease-in-out .3s forwards;
+}
+
+@-webkit-keyframes slideIn {
+	from {opacity: 0;-webkit-transform: translate3d(0,30%,0);transform: translate3d(0,30%,0)}
+	to {opacity: 1; -webkit-tranform: translate3d(0,0,0); transform: translate3d(0,0,0)}
+}
+@-o-keyframes slideIn {
+	from {opacity: 0;-webkit-transform: translate3d(0,30%,0);transform: translate3d(0,30%,0)}
+	to {opacity: 1; -webkit-tranform: translate3d(0,0,0); transform: translate3d(0,0,0)}
+}
+@-moz-keyframes slideIn {
+	from {opacity: 0;-webkit-transform: translate3d(0,30%,0);transform: translate3d(0,30%,0)}
+	to {opacity: 1; -webkit-tranform: translate3d(0,0,0); transform: translate3d(0,0,0)}
+}
+@keyframes slideIn {
+	from {opacity: 0;-webkit-transform: translate3d(0,30%,0);transform: translate3d(0,30%,0)}
+	to {opacity: 1; -webkit-tranform: translate3d(0,0,0); transform: translate3d(0,0,0)}
+}
+
+@media screen and (min-width:500px) {
+	#welcome-msg {
+		font-size: 3em;
+	}
+
+	.button {
+		border-width: 1px;
+	}
+
+	.footer {
+		font-size: 1em;
+	}
 }
