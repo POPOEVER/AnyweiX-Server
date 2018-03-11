@@ -1,16 +1,10 @@
-const getResult = require('../api/wx.js')
+const getResult = require('./api/wx.js')
 
 const appRouter = function (app) {
 
-	app.get("/", function(req, res, next) {
-		// res.status(200).send({
-		// 	"isSucceeded": true,
-		// 	"data": {
-		// 		"message":"Nothing to look here"
-		// 	}
-		// })
+	app.get('/', (req, res, next) => {
 		var options = {
-			root: __dirname + '/../pages/',
+			root: __dirname + '/pages/',
 			dotfiles: 'deny',
 			headers: {
 			'x-timestamp': Date.now(),
@@ -24,9 +18,9 @@ const appRouter = function (app) {
 		})
 	})
 
-	app.get("/api/list", function(req, res) {
-		let params = req.query
-		getResult(params, function(data) {
+	// API 路由
+	app.get('/api', (req, res) => {
+		getResult(req.query, (data) => {
 			if(data.data === []) {
 				res.status(200).send({
 					"isSucceeded": true,
@@ -39,6 +33,12 @@ const appRouter = function (app) {
 			}
 		})
 	})
+
+	// TODO: 视图路由
+	app.get('/view', (req, res) => {
+
+	});
+
 }
 
 module.exports = appRouter

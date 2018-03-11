@@ -3,8 +3,15 @@ const cheerio = require('cheerio')
 
 function getResult(req, success) {
 	console.log(req)
-
-	let param = 'http://weixin.sogou.com/weixin?type=' + req.Type + '&s_from=input&query=' + req.Keyword
+	let param
+	switch (req.action) {
+		case 'search': // 关键字查询返回文章列表
+			param = 'http://weixin.sogou.com/weixin?type=' + req.type + '&s_from=input&query=' + req.q
+			break;
+		case 'article': // 通过文章地址抓取单篇文章
+			param = req.q
+		default:
+	}
 
 	console.log(param)
 

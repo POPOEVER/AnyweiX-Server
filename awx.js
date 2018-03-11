@@ -2,7 +2,7 @@ const express = require('express')
 const http = require('http')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const router = require('./router/router.js')
+const router = require('./router.js')
 
 
 // 生成实例

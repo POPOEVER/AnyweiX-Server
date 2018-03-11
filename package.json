@@ -2,10 +2,10 @@
   "name": "anyweix-server",
   "version": "0.1.0",
   "description": "AnyweiX Server Daemon",
-  "main": "index.js",
+  "main": "awx.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node awx.js"
   },
   "author": {
       "Andre Pan": "popoever@gmail.com"
