@@ -24,8 +24,25 @@ body {
 	box-sizing: border-box;
 }
 
-#logo {
+.logo-container {
+	display: flex;
+	display: -webkit-flex;
+	justify-content: center;
+	align-items: center;
 	height: 50%;
+}
+
+#logo {
+	height: 100%;
+}
+
+.info-container {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	flex: 1;
 }
 
 #welcome-msg {
@@ -33,6 +50,7 @@ body {
 	font-weight: 100;
 	color: #fefefe;
 	text-align: center;
+	line-height: 1.5;
 	padding: 0 30px;
 	box-sizing: border-box;
 }
@@ -56,9 +74,8 @@ body {
 }
 
 .footer {
-	color: #555;
+	color: #888;
 	font-size: .8em;
-	font-weight: 200;
 }
 
 #logo,
@@ -118,5 +135,33 @@ body {
 
 	.footer {
 		font-size: 1em;
+	}
+}
+
+@media screen and (orientation: landscape) and (max-width: 1029px) {
+	.container {
+		flex-direction: row;
+	}
+
+	.logo-container {
+		width: 50%;
+		height: 100%;
+		justify-content: flex-end;
+	}
+
+	#logo {
+		height: 80%;
+	}
+
+	.info-container {
+		height: 70%;
+	}
+
+	#welcome-msg {
+		font-size: 1.5em;
+	}
+
+	.footer {
+		font-size: .8em;
 	}
 }

@@ -1,10 +1,10 @@
-const getResult = require('./api/wx.js')
+const getResult = require('../api/wx.js')
 
-const appRouter = function (app) {
+const router = function (app) {
 
 	app.get('/', (req, res, next) => {
 		var options = {
-			root: __dirname + '/pages/',
+			root: __dirname + '/../pages/',
 			dotfiles: 'deny',
 			headers: {
 			'x-timestamp': Date.now(),
@@ -25,7 +25,7 @@ const appRouter = function (app) {
 				res.status(200).send({
 					"isSucceeded": true,
 					"data": {
-						"message": "没有找到匹配的结果"
+						"message": "NO_RESULT"
 					}
 				})
 			} else {
@@ -41,4 +41,4 @@ const appRouter = function (app) {
 
 }
 
-module.exports = appRouter
+module.exports = router

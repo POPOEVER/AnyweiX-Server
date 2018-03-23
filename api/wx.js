@@ -1,22 +1,50 @@
 const http = require('http')
-const cheerio = require('cheerio')
+const fs = require('fs')
+var SOURCES, UA
+
+const wxParser = require('../utils/wx.parser')
+
+// 读取抓取源列表
+fs.readFile('json/sources.json', 'utf8', (err, data) => {
+	if (err) throw err
+	SOURCES = JSON.parse(data)
+})
+
+// 读取 User-Agent 列表
+fs.readFile('json/ua.json','utf8', (err, data) => {
+	if (err) throw err
+	UA = JSON.parse(data)
+})
+
 
 function getResult(req, success) {
 	console.log(req)
-	let param
+	let param = {
+		hostname: SOURCES.wechat.base_url,
+		headers: { // 随机模拟 UA
+			'User-Agent': UA.browser[Math.floor(Math.random() * UA.browser.length)].value
+		},
+		action: req.action
+	}
 	switch (req.action) {
+		case 'hotwords': // 查询热词
+			param.path = SOURCES.wechat.action.hotwords
+			break
+		case 'toparticles':
+			param.path = SOURCES.wechat.action.hotwords
+			break
 		case 'search': // 关键字查询返回文章列表
-			param = 'http://weixin.sogou.com/weixin?type=' + req.type + '&s_from=input&query=' + req.q
-			break;
+			param.path = SOURCES.wechat.action.search  + req.type + '&s_from=input&query=' + req.q
+			break
 		case 'article': // 通过文章地址抓取单篇文章
-			param = req.q
+			param.path = SOURCES.wechat.action.article
+			break
 		default:
 	}
 
 	console.log(param)
 
 	req = http.get(param, function(res) {
-
 		let data = ''
 		res.setEncoding('utf8')
 		res.on('data',function(chunk) {
@@ -27,15 +55,7 @@ function getResult(req, success) {
 				"isSucceeded": true,
 				"data": []
 			}
-			let $ = cheerio.load(data)
-			$('ul.news-list li').each(function(i, e) {
-				result.data[result.data.length] = {
-					"title": $(e).find('.txt-box h3 a').text(),
-					"url": $(e).find('.txt-box h3 a').attr('href'),
-					"author": $(e).find('.s-p .account').text()
-				}
-			})
-			success(result)
+			dataDispatcher(data, param.action, result, (res) => {success(res)})
 		})
 	})
 
@@ -45,5 +65,24 @@ function getResult(req, success) {
 
 	req.end()
 }
+
+function dataDispatcher(data, action, result, cb) {
+	switch (action) {
+		case 'hotwords':
+			wxParser.hotWords(data, result, res => cb(res))
+			break
+		case 'toparticles':
+			wxParser.articleList(data, result, res => cb(res))
+			break
+		case 'search':
+			wxParser.articleList(data, result, res => cb(res))
+			break
+		case 'article':
+			wxParser.article(data, result, res => cb(res))
+			break
+		default:
+	}
+}
+
 
 module.exports = getResult

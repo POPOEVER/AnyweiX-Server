@@ -1,0 +1,11 @@
+{
+	"wechat": {
+		"base_url": "weixin.sogou.com",
+		"article_url": "mp.weixin.qq.com",
+		"action": {
+			"hotwords": "",
+			"search": "/weixin?type=",
+			"article": "s"
+		}
+	}
+}
