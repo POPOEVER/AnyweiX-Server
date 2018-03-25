@@ -51,11 +51,11 @@ function getResult(req, success) {
 			data += chunk
 		})
 		res.on('end',function() {
-			let result = {
+			let response = {
 				"isSucceeded": true,
-				"data": []
+				"data": {}
 			}
-			dataDispatcher(data, param.action, result, (res) => {success(res)})
+			dataDispatcher(data, param.action, response, (res) => {success(res)})
 		})
 	})
 
@@ -66,19 +66,22 @@ function getResult(req, success) {
 	req.end()
 }
 
-function dataDispatcher(data, action, result, cb) {
+function dataDispatcher(data, action, response, cb) {
 	switch (action) {
 		case 'hotwords':
-			wxParser.hotWords(data, result, res => cb(res))
+			wxParser.hotWords(data, response, res => cb(res))
 			break
 		case 'toparticles':
-			wxParser.articleList(data, result, res => cb(res))
+			wxParser.articleList(data, response, res => cb(res))
+			break
+		case 'all':
+			wxParser.all(data, response, res => cb(res))
 			break
 		case 'search':
-			wxParser.articleList(data, result, res => cb(res))
+			wxParser.articleList(data, response, res => cb(res))
 			break
 		case 'article':
-			wxParser.article(data, result, res => cb(res))
+			wxParser.article(data, response, res => cb(res))
 			break
 		default:
 	}
