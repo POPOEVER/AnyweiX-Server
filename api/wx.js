@@ -34,7 +34,7 @@ function getResult(req, success) {
 			param.path = SOURCES.wechat.action.hotwords
 			break
 		case 'loadmorearticles': // 加载更多热文
-			param.path = SOURCES.wechat.action.load_more_articles + req.category + '/' + re.page + '.html'
+			param.path = SOURCES.wechat.action.load_more_articles + req.category + '/' + req.page + '.html'
 			break
 		case 'search': // 关键字查询返回文章列表
 			param.path = SOURCES.wechat.action.search  + req.type + '&query=' + req.q
