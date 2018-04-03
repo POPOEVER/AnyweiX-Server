@@ -30,11 +30,14 @@ function getResult(req, success) {
 		case 'hotwords': // 查询热词
 			param.path = SOURCES.wechat.action.hotwords
 			break
-		case 'toparticles':
+		case 'toparticles': // 查询热文
 			param.path = SOURCES.wechat.action.hotwords
 			break
+		case 'loadmorearticles': // 加载更多热文
+			param.path = SOURCES.wechat.action.load_more_articles + req.category + '/' + re.page + '.html'
+			break
 		case 'search': // 关键字查询返回文章列表
-			param.path = SOURCES.wechat.action.search  + req.type + '&s_from=input&query=' + req.q
+			param.path = SOURCES.wechat.action.search  + req.type + '&query=' + req.q
 			break
 		case 'article': // 通过文章地址抓取单篇文章
 			param.path = SOURCES.wechat.action.article
@@ -76,6 +79,9 @@ function dataDispatcher(data, action, response, cb) {
 			break
 		case 'all':
 			wxParser.all(data, response, res => cb(res))
+			break
+		case 'loadmorearticles':
+			wxParser.articleList(data, response, res => cb(res))
 			break
 		case 'search':
 			wxParser.articleList(data, response, res => cb(res))
