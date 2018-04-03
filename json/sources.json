@@ -5,7 +5,8 @@
 		"action": {
 			"hotwords": "",
 			"search": "/weixin?type=",
-			"article": "s"
+			"article": "s",
+			"load_more_articles": "/pcindex/pc/pc_"
 		}
 	}
 }
