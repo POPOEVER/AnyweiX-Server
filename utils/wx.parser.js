@@ -18,7 +18,8 @@ function hotWords(data, response, cb) {
 function articleList(data, response, cb) {
 	response.data.articles = []
 	let $ = domParser.load(data)
-	$('ul.news-list li').each((i,e) => {
+	let target = $('ul.news-list li').length > 0 ? $('ul.news-list li') : $('li')
+	target.each((i,e) => {
 		let titleObj = $(e).find('.txt-box h3 a')
 		let link = titleObj.attr('href')
 		let title = titleObj.text()
