@@ -17,7 +17,7 @@ function hotWords(data, response, cb) {
 
 function articleList(data, response, cb) {
 	response.data.articles = []
-	response.data.category = []
+	response.data.categories = []
 	let $ = domParser.load(data)
 	// 判断是打开页面还是页面内加载更多
 	let target = $('ul.news-list li').length > 0 ? $('ul.news-list li') : $('li')
@@ -41,13 +41,13 @@ function articleList(data, response, cb) {
 		}
 	})
 	// 取出文章分类
-	let category = $('.tab-box a').not('#more_anchor')
-	category.each((i,e) => {
-		let categoryID = $(e).attr('id')
-		let categoryName = $(e).text()
-		response.data.category[response.data.category.length] = {
-			"id": categoryID,
-			"name": categoryName
+	let categories = $('.tab-box a').not('#more_anchor')
+	categories.each((i,e) => {
+		let id = $(e).attr('id')
+		let name = $(e).text()
+		response.data.categories[response.data.categories.length] = {
+			"id": id,
+			"name": name
 		}
 	})
 	cb(response)
