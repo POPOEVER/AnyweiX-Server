@@ -17,8 +17,11 @@ function hotWords(data, response, cb) {
 
 function articleList(data, response, cb) {
 	response.data.articles = []
+	response.data.category = []
 	let $ = domParser.load(data)
+	// 判断是打开页面还是页面内加载更多
 	let target = $('ul.news-list li').length > 0 ? $('ul.news-list li') : $('li')
+	// 取出文章列表
 	target.each((i,e) => {
 		let titleObj = $(e).find('.txt-box h3 a')
 		let link = titleObj.attr('href')
@@ -35,6 +38,16 @@ function articleList(data, response, cb) {
 			"link": link,
 			"image": img,
 			"query": query
+		}
+	})
+	// 取出文章分类
+	let category = $('.tab-box a')
+	category.each((i,e) => {
+		let categoryID = $(e).attr('id')
+		let categoryName = $(e).text()
+		response.data.category[response.data.category.length] = {
+			"id": categoryID,
+			"name": categoryName
 		}
 	})
 	cb(response)
