@@ -6,7 +6,7 @@
 			"hotwords": "",
 			"search": "/weixin?type=",
 			"article": "s",
-			"load_more_articles": "/pcindex/pc/pc_"
+			"load_more_articles": "/pcindex/pc/"
 		}
 	}
 }
