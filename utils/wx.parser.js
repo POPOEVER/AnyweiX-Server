@@ -41,7 +41,7 @@ function articleList(data, response, cb) {
 		}
 	})
 	// 取出文章分类
-	let category = $('.tab-box a')
+	let category = $('.tab-box a').not('#more_anchor')
 	category.each((i,e) => {
 		let categoryID = $(e).attr('id')
 		let categoryName = $(e).text()
