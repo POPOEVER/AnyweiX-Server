@@ -4,7 +4,7 @@
 		"article_url": "mp.weixin.qq.com",
 		"action": {
 			"hotwords": "",
-			"search": "/weixin?type=",
+			"search": "/weixin?s_from=input&type=",
 			"article": "s",
 			"load_more_articles": "/pcindex/pc/"
 		}
