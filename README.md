@@ -1,6 +1,6 @@
-# AnyweiX
+# anyweiX
 
-AnyweiX 一个是基于 Node.js 和 Express.js 搭建的微信公众号文章爬虫
+anyweiX 一个是基于 Node.js 和 Express.js 搭建的微信公众号文章爬虫
 
 
 安装方法
