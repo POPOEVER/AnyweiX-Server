@@ -5,13 +5,13 @@ var SOURCES, UA;
 const wxParser = require('../utils/wx.parser');
 
 // 读取抓取源列表
-fs.readFile('/json/sources.json', 'utf8', (err, data) => {
+fs.readFile('json/sources.json', 'utf8', (err, data) => {
   if (err) throw err;
   SOURCES = JSON.parse(data);
 });
 
 // 读取 User-Agent 列表
-fs.readFile('/json/ua.json', 'utf8', (err, data) => {
+fs.readFile('json/ua.json', 'utf8', (err, data) => {
   if (err) throw err;
   UA = JSON.parse(data);
 });
