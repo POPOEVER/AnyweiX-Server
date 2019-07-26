@@ -5,13 +5,13 @@ var SOURCES, UA;
 const wxParser = require('../utils/wx.parser');
 
 // 读取抓取源列表
-fs.readFile('json/sources.json', 'utf8', (err, data) => {
+fs.readFile('../json/sources.json', 'utf8', (err, data) => {
   if (err) throw err;
   SOURCES = JSON.parse(data);
 });
 
 // 读取 User-Agent 列表
-fs.readFile('json/ua.json', 'utf8', (err, data) => {
+fs.readFile('../json/ua.json', 'utf8', (err, data) => {
   if (err) throw err;
   UA = JSON.parse(data);
 });
@@ -22,8 +22,7 @@ function getResult(req, success) {
     hostname: SOURCES.wechat.base_url,
     headers: {
       // 随机模拟 UA
-      'User-Agent':
-        UA.browser[Math.floor(Math.random() * UA.browser.length)].value
+      'User-Agent': UA.browser[Math.floor(Math.random() * UA.browser.length)].value
     },
     action: req.action
   };
@@ -35,21 +34,10 @@ function getResult(req, success) {
       param.path = SOURCES.wechat.action.hotwords;
       break;
     case 'loadmorearticles': // 加载更多热文
-      param.path =
-        SOURCES.wechat.action.load_more_articles +
-        req.category +
-        '/' +
-        req.page +
-        '.html';
+      param.path = SOURCES.wechat.action.load_more_articles + req.category + '/' + req.page + '.html';
       break;
     case 'search': // 关键字查询返回文章列表
-      param.path =
-        SOURCES.wechat.action.search +
-        req.type +
-        '&query=' +
-        req.q +
-        '&page=' +
-        req.page;
+      param.path = SOURCES.wechat.action.search + req.type + '&query=' + req.q + '&page=' + req.page;
       break;
     case 'article': // 通过文章地址抓取单篇文章
       param.path = SOURCES.wechat.action.article;
